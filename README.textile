@@ -1,6 +1,6 @@
 setup
 
 	rm ~/Library/Application\ Support/Adium\ 2.0/Message\ Styles/Mochastyle_orta.AdiumMessageStyle/
-	mikdir ~/Library/Application\ Support/Adium\ 2.0/Message\ Styles/Mochastyle_orta.AdiumMessageStyle/
+	mkdir ~/Library/Application\ Support/Adium\ 2.0/Message\ Styles/Mochastyle_orta.AdiumMessageStyle/
 	cd ~/Library/Application\ Support/Adium\ 2.0/Message\ Styles/Mochastyle_orta.AdiumMessageStyle/
 	git pull https://orta@github.com/orta/Mochastyle_orta.git
