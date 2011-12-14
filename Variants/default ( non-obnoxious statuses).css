@@ -47,8 +47,10 @@ input {
 }
 
 .status {
-    color : #7bff2c;
+    color : #286f4b;
     text-transform : uppercase;
+    padding : 2px 2px;
+	
 }
 
 .message {
