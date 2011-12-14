@@ -13,7 +13,6 @@ function doMagicLinks()
 		    var xmlHttp = null;
 			xmlHttp = new XMLHttpRequest();
 		    xmlHttp.open( "GET", anchor.href, false );
-			console.log(anchor.href);
 		    xmlHttp.send( null );
 		    var response = xmlHttp.responseText;
 			var imgHref = response.split(' class="embed" href="')[1].split('">Direct link</a>')[0];
@@ -21,7 +20,16 @@ function doMagicLinks()
 			inlineImg(anchor);
 		}
 		
-			
+		// youtube
+		if( anchor.href.match(/youtube.com/)){			
+			var video = anchor.href.split("/watch?v=")[1].split("&")[0];
+			var iframe = document.createElement("iframe");
+			iframe.setAttribute("src", "http://www.youtube.com/embed/" + video);
+			iframe.setAttribute("width", "560");
+			iframe.setAttribute("height", "315");
+			anchor.parentNode.replaceChild(iframe, anchor);
+		}
+		
 		// Match videos
 		else if(anchor.href.match(/\.(mov)$/ig))
 			inlineVideo(anchor);
