@@ -65,3 +65,8 @@ input {
 .incoming:hover .timestamp {
   color : #ccc;
 }
+
+img, video, iframe {
+	max-width: 100%;
+	display:block;
+}
