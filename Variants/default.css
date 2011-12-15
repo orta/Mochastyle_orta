@@ -65,7 +65,6 @@ input {
   color : #ccc;
 }
 
-img, video, iframe {
+.generated {
 	max-width: 100%;
-	display:block;
 }

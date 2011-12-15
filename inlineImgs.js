@@ -27,6 +27,7 @@ function doMagicLinks()
 			iframe.setAttribute("src", "http://www.youtube.com/embed/" + video);
 			iframe.setAttribute("width", "560");
 			iframe.setAttribute("height", "315");
+			iframe.setAttribute("class", "generated");
 			anchor.parentNode.replaceChild(iframe, anchor);
 		}
 		
@@ -46,7 +47,7 @@ function inlineImg(node)
 	var img = document.createElement("img");
 	img.src = node.href;
 	img.setAttribute("txt", node.innerHTML);
-	img.setAttribute("class", "inlineImg");
+	img.setAttribute("class", "inlineImg generated");
 	node.parentNode.replaceChild(img, node);
 	img.onclick = function() { revertLink(img); return false; };
 }
@@ -68,7 +69,7 @@ function getVideoF(aElm)
 function inlineVideo(node)
 {
 	var vwrap = document.createElement("div");
-	vwrap.setAttribute("class", "inlineVideo");
+	vwrap.setAttribute("class", "inlineVideo generated");
 	vwrap.setAttribute("src", node.href);
 	vwrap.setAttribute("txt", node.innerHTML);
 
