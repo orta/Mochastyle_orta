@@ -10,8 +10,7 @@ function doMagicLinks()
 			inlineImg(anchor);
 			
 		if( anchor.href.match(/cl.ly/)){
-		    var xmlHttp = null;
-			xmlHttp = new XMLHttpRequest();
+			var xmlHttp = new XMLHttpRequest();
 		    xmlHttp.open( "GET", anchor.href, false );
 		    xmlHttp.send( null );
 		    var response = xmlHttp.responseText;
@@ -22,7 +21,10 @@ function doMagicLinks()
 		
 		// youtube
 		if( anchor.href.match(/youtube.com/)){			
-			var video = anchor.href.split("/watch?v=")[1].split("&")[0];
+			var video = anchor.href.split("v=")[1];
+			if(video.indexOf("&") != -1){
+					video = video.split("&")[0]
+			}
 			var iframe = document.createElement("iframe");
 			iframe.setAttribute("src", "http://www.youtube.com/embed/" + video);
 			iframe.setAttribute("width", "560");
