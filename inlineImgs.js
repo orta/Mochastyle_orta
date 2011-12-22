@@ -32,7 +32,18 @@ function doMagicLinks()
 			iframe.setAttribute("class", "generated");
 			anchor.parentNode.replaceChild(iframe, anchor);
 		}
-		
+	
+		// vimeo
+		if( anchor.href.match(/vimeo.com/)){
+			var video = anchor.href.match(/vimeo.com\/([0-9]+)/)[1];
+			var iframe = document.createElement("iframe");
+			iframe.setAttribute("src","http://player.vimeo.com/video/" + video + "?title=0&amp;byline=0&amp;portrait=0");
+			iframe.setAttribute("width","400");
+			iframe.setAttribute("height","225");
+			iframe.setAttribute("class", "generated");
+			anchor.parentNode.replaceChild(iframe, anchor);
+		}	
+	
 		// Match videos
 		else if(anchor.href.match(/\.(mov)$/ig))
 			inlineVideo(anchor);
