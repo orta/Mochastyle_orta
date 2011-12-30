@@ -33,6 +33,18 @@ function doMagicLinks()
 			anchor.parentNode.replaceChild(iframe, anchor);
 		}
 	
+		// youtube short
+				if( anchor.href.match(/youtu.be/)){			
+			var video = anchor.href.split("/")[3];
+			var iframe = document.createElement("iframe");
+			iframe.setAttribute("src", "http://www.youtube.com/embed/" + video);
+			iframe.setAttribute("width", "560");
+			iframe.setAttribute("height", "315");
+			iframe.setAttribute("class", "generated");
+			anchor.parentNode.replaceChild(iframe, anchor);
+		}
+
+
 		// vimeo
 		if( anchor.href.match(/vimeo.com/)){
 			var video = anchor.href.match(/vimeo.com\/([0-9]+)/)[1];
