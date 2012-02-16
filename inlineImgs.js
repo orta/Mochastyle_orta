@@ -66,7 +66,7 @@ function doMagicLinks()
 	for(var i = 0; i < anchors.length; i++)
 	{
 		var anchor = anchors.item(i);			
-        var video_matches = 
+        var sources = 
           { youtube:
             { regex: /youtube.com\/.*(?:\?|.*&)v=([^&]+)/,
 	          embed: 'http://www.youtube.com/embed/',
@@ -96,12 +96,12 @@ function doMagicLinks()
 			}
           }
 
-		var video_key, match, attr_key;
+		var source_key, match, attr_key;
         
-        for (video_key in video_matches) {
-          var video_source = video_matches[video_key];
-          if (match = video_source.regex.exec(anchor.href)) {
-            video_source.func(anchor, match[1]);
+        for (source_key in sources) {
+          var source = sources[source_key];
+          if (match = source.regex.exec(anchor.href)) {
+            source.func(anchor, match[1]);
           }
         }
 		
