@@ -33,6 +33,14 @@ a:link:hover {
   color : white;
 }
 
+.history {
+  opacity: 0.5;
+}
+
+.mention {
+    background : #4d0d0c !important;
+}
+
 input {
     background : black
     border : 2px solid #0cf;
