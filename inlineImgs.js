@@ -14,9 +14,11 @@ function doMagicLinks()
 		    xmlHttp.open( "GET", anchor.href, false );
 		    xmlHttp.send( null );
 		    var response = xmlHttp.responseText;
-			var imgHref = response.split(' class="embed" href="')[1].split('">Direct link</a>')[0];
-			anchor.href = imgHref;
-			inlineImg(anchor);
+		    if (response.indexOf('<body id="image">') != -1) {
+			    var imgHref = response.split(' class="embed" href="')[1].split('">Direct link</a>')[0];
+				anchor.href = imgHref;
+				inlineImg(anchor);	
+		    };
 		}
 		
 		// youtube
@@ -138,4 +140,5 @@ appendNextMessage = function(html)
 	aNM(html);
 	setTimeout(function() { doMagicLinks(); }, 100);
 }
+
 setTimeout(function() { doMagicLinks(); }, 500);
