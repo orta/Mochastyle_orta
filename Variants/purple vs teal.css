@@ -68,3 +68,12 @@ input {
 .incoming:hover .timestamp {
   color : #ccc;
 }
+
+
+.history {
+  opacity: 0.5;
+}
+
+.mention {
+    background : #4d0d0c !important;
+}

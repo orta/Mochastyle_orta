@@ -68,3 +68,11 @@ input {
 .generated {
 	max-width: 100%;
 }
+
+.history {
+  opacity: 0.5;
+}
+
+.mention {
+    background : #4d0d0c !important;
+}
