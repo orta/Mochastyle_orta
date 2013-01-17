@@ -7,8 +7,12 @@
 	
 		//Appending new content to the message view
 		function appendMessage(html) {
+      if(html.search("Show in Flowdock:") != -1){
+        return;
+      }
+      
 			shouldScroll = nearBottom();
-		
+    
 			//Remove any existing insertion point
 			insert = document.getElementById("insert");
 			if(insert) insert.parentNode.removeChild(insert);
@@ -23,6 +27,10 @@
 			alignChat(shouldScroll);
 		}
 		function appendMessageNoScroll(html) {
+      if(html.search("Show in Flowdock:") != -1){
+        return;
+      }
+      
 			//Remove any existing insertion point
 			insert = document.getElementById("insert");
 			if(insert) insert.parentNode.removeChild(insert);
