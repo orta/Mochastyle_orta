@@ -7,7 +7,9 @@ function doMagicLinks()
 		
 		// Match images
 		if(anchor.href.match(/\.(png|jpg|jpeg|gif)$/ig))
-			inlineImg(anchor);
+      if(!anchor.attributes["data-hidden"]) {
+        inlineImg(anchor);
+      }
 			
 		if( anchor.href.match(/cl.ly/)){
 			var xmlHttp = new XMLHttpRequest();
@@ -83,6 +85,7 @@ function revertLink(node)
 {
 	var a = document.createElement("a");
 	a.href = node.src;
+	a.setAttribute("data-hidden", "YES");
 	a.innerHTML = node.getAttribute("txt");
 	node.parentNode.replaceChild(a, node);
 	a.onclick = function() { if(window.event.shiftKey) return true; inlineImg(a); return false; };
