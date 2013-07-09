@@ -4,13 +4,13 @@ function doMagicLinks()
 	for(var i = 0; i < anchors.length; i++)
 	{
 		var anchor = anchors.item(i);
-		
+
 		// Match images
 		if(anchor.href.match(/\.(png|jpg|jpeg|gif)$/ig))
       if(!anchor.attributes["data-hidden"]) {
         inlineImg(anchor);
       }
-			
+
 		if( anchor.href.match(/cl.ly/)){
 			var xmlHttp = new XMLHttpRequest();
 		    xmlHttp.open( "GET", anchor.href, false );
@@ -19,12 +19,27 @@ function doMagicLinks()
 		    if (response.indexOf('<body id="image">') != -1) {
 			    var imgHref = response.split(' class="embed" href="')[1].split('">Direct link</a>')[0];
 				anchor.href = imgHref;
-				inlineImg(anchor);	
+				inlineImg(anchor);
 		    };
 		}
-		
+
+		//vine
+		if( anchor.href.match(/vine.co/)){
+			var xmlHttp = new XMLHttpRequest();
+		    xmlHttp.open( "GET", anchor.href, false );
+		    xmlHttp.send( null );
+		    var response = xmlHttp.responseText;
+			var iframe = document.createElement("iframe");
+			iframe.setAttribute("src", anchor.href + "/card");
+			iframe.setAttribute("width", "435");
+			iframe.setAttribute("height", "435");
+			iframe.setAttribute("class", "generated");
+		    iframe.innerHTML = response;
+			anchor.parentNode.replaceChild(iframe, anchor);
+		}
+
 		// youtube
-		if( anchor.href.match(/youtube.com/)){			
+		if( anchor.href.match(/youtube.com/)){
 			var video = anchor.href.split("v=")[1];
 			if(video.indexOf("&") != -1){
 					video = video.split("&")[0]
@@ -36,9 +51,9 @@ function doMagicLinks()
 			iframe.setAttribute("class", "generated");
 			anchor.parentNode.replaceChild(iframe, anchor);
 		}
-	
+
 		// youtube short
-				if( anchor.href.match(/youtu.be/)){			
+				if( anchor.href.match(/youtu.be/)){
 			var video = anchor.href.split("/")[3];
 			var iframe = document.createElement("iframe");
 			iframe.setAttribute("src", "http://www.youtube.com/embed/" + video);
@@ -58,8 +73,8 @@ function doMagicLinks()
 			iframe.setAttribute("height","225");
 			iframe.setAttribute("class", "generated");
 			anchor.parentNode.replaceChild(iframe, anchor);
-		}	
-	
+		}
+
 		// Match videos
 		else if(anchor.href.match(/\.(mov)$/ig))
 			inlineVideo(anchor);
@@ -116,7 +131,7 @@ function inlineVideo(node)
 	close.innerHTML = "(Close)";
 	close.onclick = function() { revertVideo(vwrap); return false; };
 	vwrap.appendChild(close);
-	
+
 	node.parentNode.replaceChild(vwrap, node);
 }
 
